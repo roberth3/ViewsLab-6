@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users</h2>
+
+@*TODO: complete this view*@
+<div id="userGrid">
+    @Html.Action("UserGrid", new {pageSize = ViewBag.PageSize, page = ViewBag.Page, sort = ViewBag.Sort})
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#userGrid a").live('click', function (event) {
+            if($(event.target).attr("href").indexOf("UserDetail") ==-1)
+            {
+                event.preventDefault();
+                var href = $(this).attr("href");
+                var queryString = href.substring(href.indexOf('?'), href.length);
+                var requestUrl =
+                    '@Url.Action("UserGrid", "User")' + queryString;
+                $("#userGrid").load(requestUrl);
+            }
+        });
+    });
+</script> 

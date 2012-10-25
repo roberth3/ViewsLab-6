@@ -1,0 +1,23 @@
+﻿@using ViewsLab.Helpers
+@{
+    ViewBag.Title = "Index";
+    string url = ViewBag.Url;
+    string alt = ViewBag.Alt;
+    int idValue = ViewBag.Id;
+}
+<h2>Image Link example</h2>
+
+<p>Click on the image to go to details page</p>
+
+<div>
+    @*<a href='@Url.Action("Details", new { id = idValue })'><img src= '@url' alt='@alt' style="border-width:5px; border-style: solid; border-color: red" /></a>*@
+
+    @Html.ImageLink("Details", @url, @alt)
+
+    @Html.ImageLink("Details", @url, @alt, new { id = idValue })
+
+
+    @Html.ImageLink("Details", @url, @alt, new { id = idValue },
+                null, new { style="border-width:5px; border-style: solid; border-color: red" })
+
+</div>
